@@ -1,8 +1,9 @@
+/* eslint-disable no-console */
 // eslint-disable-next-line no-console
-console.log('Hello world!');
-
 const thisIsAnUnsusedVariable = 'Hello world!';
 
 const thisIsAnUnusedFunction = () => {
-  console.log('Hello world!');
+  console.log(thisIsAnUnsusedVariable);
 };
+
+console.log(thisIsAnUnusedFunction());
