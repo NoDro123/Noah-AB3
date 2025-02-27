@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   Linting:
-    runs-on: [self-hosted, Linux, x64]
+    runs-on: [self-hosted, Linux, x64, Noah]
     steps:
       - name: Install dependencies
         run: npm install
