@@ -6,7 +6,7 @@ jobs:
   Linting:
     runs-on:
       group: Noah
-      labels: [self-hosted, Linux, x64]
+      labels: [self-hosted]
     steps:
       - name: Install dependencies
         run: npm install
@@ -16,7 +16,7 @@ jobs:
   Testing:
     runs-on:
       group: Noah
-      labels: [self-hosted, Linux, x64]
+      labels: [self-hosted]
     steps:
       - name: Install dependencies
         run: npm install
@@ -26,7 +26,7 @@ jobs:
   build:
     runs-on:
       group: Noah
-      labels: [self-hosted, Linux, x64]
+      labels: [self-hosted]
     steps:
       - name: Install dependencies
         run: npm install
