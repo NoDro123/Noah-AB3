@@ -4,7 +4,9 @@ on: [push, pull_request]
 
 jobs:
   Linting:
-    runs-on: [self-hosted, Linux, x64, Noah]
+    runs-on:
+      group: Noah
+      labels: [self-hosted, Linux, x64]
     steps:
       - name: Install dependencies
         run: npm install
@@ -12,7 +14,9 @@ jobs:
       - name: Build
         run: npm run lint
   Testing:
-    runs-on: [self-hosted, Linux, x64]
+    runs-on:
+      group: Noah
+      labels: [self-hosted, Linux, x64]
     steps:
       - name: Install dependencies
         run: npm install
@@ -20,7 +24,9 @@ jobs:
       - name: Build
         run: npm run test
   build:
-    runs-on: [self-hosted, Linux, x64]
+    runs-on:
+      group: Noah
+      labels: [self-hosted, Linux, x64]
     steps:
       - name: Install dependencies
         run: npm install
