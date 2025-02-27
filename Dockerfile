@@ -4,7 +4,9 @@ WORKDIR /app
 
 COPY package.json .
 
-RUN npm run install
+RUN npm install -g npm@11.1.0
+
+RUN npm install 
 
 COPY . .
 
