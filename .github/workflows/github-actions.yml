@@ -1,6 +1,13 @@
 name: AB03 - GitHub Actions
 run-name: ${{ github.actor }}
-on: [push]
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
 
 jobs:
   Linting:
