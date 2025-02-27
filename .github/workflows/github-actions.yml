@@ -1,0 +1,29 @@
+name: AB03 - GitHub Actions
+run-name: ${{ github.actor }}
+on: [push, pull_request]
+
+jobs:
+  Linting:
+    runs-on: [self-hosted, Linux, x64]
+    steps:
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run lint
+  Testing:
+    runs-on: [self-hosted, Linux, x64]
+    steps:
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run test
+  build:
+    runs-on: [self-hosted, Linux, x64]
+    steps:
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
