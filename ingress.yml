@@ -25,10 +25,3 @@ spec:
                 name: ab05
                 port:
                   number: 80
-          - path: /log/time
-            pathType: Prefix
-            backend:
-              service:
-                name: ab05
-                port:
-                  number: 80
