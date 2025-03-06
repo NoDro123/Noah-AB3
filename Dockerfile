@@ -6,8 +6,8 @@ COPY package.json .
 
 RUN npm install 
 
-RUN npm run lint && npm run test && npm run build
-
 COPY . .
+
+RUN npm run lint && npm run test && npm run build
 
 CMD [ "npm", "run", "start" ]
