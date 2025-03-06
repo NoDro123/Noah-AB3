@@ -42,21 +42,16 @@ jobs:
           version: 'latest'
 
       - name: Configure Kubernetes Context
-        uses: azure/k8s-set-context@v3
-        with:
-          kubeconfig: ${{ secrets.KUBE_CONFIG }}
+        run: |
+          echo "${{ secrets.KUBE_CONFIG }}" > kubeconfig.yaml
+          export KUBECONFIG=kubeconfig.yaml
 
       - name: Apply Kubernetes Manifests
         run: |
-          kubectl apply -f .k8s/namespace.yml
-          kubectl apply -f .k8s/ui/nuxt-envs.yml
-          kubectl apply -f .k8s/ui/deployment.yml
-          kubectl apply -f .k8s/ui/service.yml
-          kubectl apply -f .k8s/ui/ingress.yml
-          kubectl apply -f .k8s/api/strapi-envs.yml
-          kubectl apply -f .k8s/api/deployment.yml
-          kubectl apply -f .k8s/api/service.yml
-          kubectl apply -f .k8s/api/ingress.yml
+          kubectl apply -f namespace.yml
+          kubectl apply -f deployment.yml
+          kubectl apply -f service.yml
+          kubectl apply -f ingress.yml
 
       - name: Verify deployment rollout
         run: |

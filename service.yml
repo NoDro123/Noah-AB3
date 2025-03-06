@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: AB05
+  namespace: m324-csbe-lezama
+spec:
+  ports:
+    - port: 80
+      targetPort: http
+      protocol: TCP
+  selector:
+    app: AB05
