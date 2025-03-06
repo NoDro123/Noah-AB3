@@ -36,14 +36,29 @@ jobs:
           push: true
           tags: astut0/ab04:latest
 
-      - name: Configure access to Kubernetes
-        run: echo "${{ secrets.KUBE_CONFIG }}" > kubeconfig.yaml
+      - name: Install kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: 'latest'
 
-      - name: Deploy to Kubernetes
-        run: |
-          kubectl --kubeconfig=kubeconfig.yaml set image deployment/ab04 ab04=astut0/ab04:latest -n m324-csbe-lezama
-          kubectl --kubeconfig=kubeconfig.yaml rollout status deployment/ab04 -n m324-csbe-lezama
+      - name: Configure Kubernetes Context
+        uses: azure/k8s-set-context@v3
+        with:
+          kubeconfig: ${{ secrets.KUBE_CONFIG }}
 
-      - name: Verify pods in Kubernetes
+      - name: Apply Kubernetes Manifests
         run: |
-          kubectl --kubeconfig=kubeconfig.yaml get pods -n m324-csbe-lezama
+          kubectl apply -f .k8s/namespace.yml
+          kubectl apply -f .k8s/ui/nuxt-envs.yml
+          kubectl apply -f .k8s/ui/deployment.yml
+          kubectl apply -f .k8s/ui/service.yml
+          kubectl apply -f .k8s/ui/ingress.yml
+          kubectl apply -f .k8s/api/strapi-envs.yml
+          kubectl apply -f .k8s/api/deployment.yml
+          kubectl apply -f .k8s/api/service.yml
+          kubectl apply -f .k8s/api/ingress.yml
+
+      - name: Verify deployment rollout
+        run: |
+          kubectl rollout status deployment/ab04 -n m324-csbe-lezama
+          kubectl get pods -n m324-csbe-lezama
