@@ -11,9 +11,11 @@ const server = http.createServer(app);
 app.get('/', (req: Request, res: Response) => {
   res.send(`<h1>Hello World!</h1><p>Host: ${os.hostname()}</p>`);
 });
-app.get('/log/time', (req: Request, res: Response) => {
+app.get('/log/time', (_req: Request, res: Response) => {
   const currentTime = new Date().toISOString();
+  // eslint-disable-next-line no-console
   console.log(`Current time: ${currentTime}`);
+  res.send(`Logged time: ${currentTime}`);
 });
 const serverPort = process.env.PORT || 3000;
 server.listen(serverPort, () => {
