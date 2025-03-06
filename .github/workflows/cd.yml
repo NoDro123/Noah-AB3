@@ -46,12 +46,22 @@ jobs:
         with:
           kubeconfig: ${{ secrets.KUBE_CONFIG }}
 
+      - name: Debug Kubernetes Connection
+        run: |
+          kubectl config view
+          kubectl config current-context
+          kubectl cluster-info
+
+      - name: Test API Connection
+        run: |
+          curl -k https://digital4you.internet-box.ch:6443/version || echo "Failed to connect"
+
       - name: Apply Kubernetes Manifests
         run: |
-          kubectl apply -f namespace.yml
-          kubectl apply -f deployment.yml
-          kubectl apply -f service.yml
-          kubectl apply -f ingress.yml
+          kubectl apply --validate=false -f namespace.yml
+          kubectl apply --validate=false -f deployment.yml
+          kubectl apply --validate=false -f service.yml
+          kubectl apply --validate=false -f ingress.yml
 
       - name: Verify deployment rollout
         run: |
