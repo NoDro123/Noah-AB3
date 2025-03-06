@@ -2,23 +2,30 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ab05
-  namespace: m324-csbe-lezama 
+  namespace: m324-csbe-lezama
   annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
-    acme.cert-manager.io/http01-edit-in-place: "true"
-    nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
-    kubernetes.io/tls-acme: "true"
+    cert-manager.io/cluster-issuer: 'letsencrypt-prod'
+    acme.cert-manager.io/http01-edit-in-place: 'true'
+    nginx.ingress.kubernetes.io/from-to-www-redirect: 'true'
+    kubernetes.io/tls-acme: 'true'
 spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - lezama.m324.hackerman.ch # Change this to your base url example: my-subdomain.m324.hackerman.ch
-      secretName: lezama.m324.hackerman.ch-tls # Change this to your base url example: my-subdomain.m324.hackerman.ch-tls
+        - lezama.m324.hackerman.ch
+      secretName: lezama.m324.hackerman.ch-tls
   rules:
-    - host: lezama.m324.hackerman.ch # Change this to your base url example: my-subdomain.m324.hackerman.ch
+    - host: lezama.m324.hackerman.ch
       http:
         paths:
           - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ab05
+                port:
+                  number: 80
+          - path: /log/time
             pathType: Prefix
             backend:
               service:
