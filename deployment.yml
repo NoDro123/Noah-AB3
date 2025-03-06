@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: AB05
+  name: ab05
   namespace: m324-csbe-lezama 
   labels:
-    app: AB05
+    app: ab05
 spec:
   replicas: 1
   revisionHistoryLimit: 2
   selector:
     matchLabels:
-      app: AB05
+      app: ab05
   template:
     metadata:
       labels:
-        app: AB05
+        app: ab05
     spec:
       containers:
-        - name: AB05
+        - name: ab05
           image: ab03:latest
           command:
             - /bin/sh

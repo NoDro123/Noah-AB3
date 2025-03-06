@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: AB05
+  name: ab05
   namespace: m324-csbe-lezama 
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
@@ -22,6 +22,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: AB05
+                name: ab05
                 port:
                   number: 80
