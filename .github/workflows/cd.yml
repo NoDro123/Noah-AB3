@@ -46,10 +46,6 @@ jobs:
         with:
           kubeconfig: ${{ secrets.KUBE_CONFIG }}
 
-      - name: Test API Connection
-        run: |
-          curl -k https://digital4you.internet-box.ch:6443/version || echo "Failed to connect"
-
       - name: Apply Kubernetes Manifests
         run: |
           kubectl apply --validate=false -f namespace.yml
