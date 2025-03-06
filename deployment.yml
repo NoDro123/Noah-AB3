@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: ab05
-          image: ab03:latest
+          image: astut0/ab04:latest
           command:
             - /bin/sh
             - "-c"
