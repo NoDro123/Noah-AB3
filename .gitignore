@@ -107,3 +107,7 @@ dist
 .vscode-test
 
 build
+lezama-m324-csbe-lezama-kubeconfig.yaml
+package-lock.json
+package-lock.json
+yarn.lock
