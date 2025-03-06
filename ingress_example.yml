@@ -13,10 +13,10 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - digital4you.internet-box.ch # Change this to your base url example: my-subdomain.m324.hackerman.ch
-      secretName: digital4you.internet-box.ch-tls # Change this to your base url example: my-subdomain.m324.hackerman.ch-tls
+        - lezama.m324.hackerman.ch # Change this to your base url example: lezama.m324.hackerman.ch
+      secretName: lezama.m324.hackerman.ch # Change this to your base url example: my-subdomain.m324.hackerman.ch-tls
   rules:
-    - host: digital4you.internet-box.ch # Change this to your base url example: my-subdomain.m324.hackerman.ch
+    - host: lezama.m324.hackerman.ch # Change this to your base url example: my-subdomain.m324.hackerman.ch
       http:
         paths:
           - path: /
